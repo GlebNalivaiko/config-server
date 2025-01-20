@@ -1,0 +1,46 @@
+server:
+  port: 8072
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      metrics:
+        enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+api-gateway:
+  timeout-ms: 4000
+  failure-rate-threshold: 50
+  slow-call-rate-threshold: 50
+  slow-call-duration-threshold: 50
+  permitted-num-of-calls-in-half-open-state: 5
+  sliding-window-size: 10
+  min-number-of-calls: 10
+  wait-duration-in-open-state: 10000
+  order-service-uri: lb://order-service
+  user-service-uri: lb://user-service
+
+management:
+  endpoint:
+    gateway:
+      access: unrestricted
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${eureka-url}

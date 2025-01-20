@@ -1,0 +1,29 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://${server-name}:${database-port}/${database-name}
+    username: ${database-user}
+    password: ${database-password}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka-url}
+  instance:
+    preferIpAddress: true

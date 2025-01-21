@@ -11,9 +11,9 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
   datasource:
-    url: jdbc:postgresql://${server-name}:${database-port}/${database-name}
-    username: ${database-user}
-    password: ${database-password}
+    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
   jpa:
     open-in-view: false
     hibernate:
